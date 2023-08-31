@@ -1,5 +1,7 @@
+import 'package:camera_app/controllers/firebase_auth.dart';
 import 'package:camera_app/view/auth/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -8,6 +10,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController  emailController= TextEditingController();
+  TextEditingController passwordController= TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,6 +37,7 @@ class _LoginState extends State<Login> {
                   child: Column(
                     children: [
                       TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           hintText: 'Email',
                           labelText: 'Enter your email',
@@ -43,6 +48,7 @@ class _LoginState extends State<Login> {
                       ),
                       SizedBox(height: 30.0,),
                       TextField(
+                        controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           hintText: 'Password',
@@ -78,7 +84,7 @@ class _LoginState extends State<Login> {
                             child: IconButton(icon: Icon(Icons.arrow_forward),
                             color: Colors.white,
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUp()));
+                              Auth.instance.login(emailController.text, passwordController.text);
                             },),
                           )
                         ],
@@ -91,7 +97,9 @@ class _LoginState extends State<Login> {
                           style: TextStyle(
                             fontSize: 18.0,
                           ),),
-                          TextButton(onPressed: (){},
+                          TextButton(onPressed: (){
+                            Get.off(SignUp());
+                          },
                            child: const Text('Sign Up', 
                            style: TextStyle(
                             color:Color.fromARGB(255, 69, 67, 67),

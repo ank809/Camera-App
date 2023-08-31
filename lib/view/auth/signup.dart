@@ -1,3 +1,4 @@
+import 'package:camera_app/controllers/firebase_auth.dart';
 import 'package:camera_app/view/auth/login.dart';
 import 'package:flutter/material.dart';
 class SignUp extends StatefulWidget {
@@ -8,6 +9,10 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  
+  TextEditingController  emailController= TextEditingController();
+  TextEditingController passwordController= TextEditingController();
+  TextEditingController nameController= TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,6 +38,7 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     children: [
                       TextField(
+                        controller: nameController,
                         decoration: InputDecoration(
                           hintText: 'Name',
                           labelText: 'Enter your name',
@@ -44,17 +50,17 @@ class _SignUpState extends State<SignUp> {
                       ),
                       SizedBox(height: 30.0,),
                       TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           hintText: 'Email',
                           labelText: 'Enter your email',
                           labelStyle: TextStyle(color: Colors.black),
-                          // fillColor: Colors.grey.shade100,
-                          // filled: true,
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
                         ),
                       ),
                       SizedBox(height: 30.0,),
                       TextField(
+                        controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           hintText: 'Password',
@@ -80,7 +86,9 @@ class _SignUpState extends State<SignUp> {
                             backgroundColor: Color.fromARGB(255, 54, 52, 52),
                             child: IconButton(icon: Icon(Icons.arrow_forward),
                             color: Colors.white,
-                            onPressed: (){},),
+                            onPressed: (){
+                              Auth.instance.SignUp(nameController.text, emailController.text, passwordController.text);
+                            },),
                           )
                         ],
                       ),
