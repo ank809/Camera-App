@@ -1,18 +1,18 @@
-import 'package:camera_app/view/auth/signup.dart';
+import 'package:camera_app/view/auth/login.dart';
 import 'package:flutter/material.dart';
-class Login extends StatefulWidget {
-  const Login({super.key});
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LoginState extends State<Login> {
+class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Container(
          decoration:const BoxDecoration(
-          image: DecorationImage(image: AssetImage('Asset/login.png'),
+          image: DecorationImage(image: AssetImage('Asset/register.png'),
           fit: BoxFit.cover)
          ),
          child: Scaffold(
@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
             children: [
               Container(
                 margin: EdgeInsets.only(top: 150.0, left: 35.0),
-                child: const Text('Welcome \n Back',
+                child: const Text(' Create \n Account',
               style: TextStyle(color: Colors.white,
               fontSize: 35.0,
               fontWeight: FontWeight.bold),),
@@ -34,10 +34,22 @@ class _LoginState extends State<Login> {
                     children: [
                       TextField(
                         decoration: InputDecoration(
+                          hintText: 'Name',
+                          labelText: 'Enter your name',
+                          labelStyle: TextStyle(color: Colors.black),
+                          // fillColor: Colors.grey.shade100,
+                          // filled: true,
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                        ),
+                      ),
+                      SizedBox(height: 30.0,),
+                      TextField(
+                        decoration: InputDecoration(
                           hintText: 'Email',
                           labelText: 'Enter your email',
-                          fillColor: Colors.grey.shade100,
-                          filled: true,
+                          labelStyle: TextStyle(color: Colors.black),
+                          // fillColor: Colors.grey.shade100,
+                          // filled: true,
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
                         ),
                       ),
@@ -47,26 +59,17 @@ class _LoginState extends State<Login> {
                         decoration: InputDecoration(
                           hintText: 'Password',
                           labelText: 'Enter your password',
-                          fillColor: Colors.grey.shade100,
-                          filled: true,
+                          labelStyle: TextStyle(color: Colors.black),
+                          // fillColor: Colors.grey.shade100,
+                          // filled: true,
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
                         ),
                       ),
-                      SizedBox(height: 20.0,),
-                     const Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                       TextButton(onPressed:null, child:Text('Forgot Password?', 
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 69, 67, 67),
-                        ),),
-                        ),
-                      ],),
                       SizedBox(height: 30.0,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text('Sign In',
+                          const Text('Create Account',
                           style: TextStyle(
                             color: Color.fromARGB(255, 69, 67, 67),
                             fontSize: 30.0,
@@ -77,9 +80,7 @@ class _LoginState extends State<Login> {
                             backgroundColor: Color.fromARGB(255, 54, 52, 52),
                             child: IconButton(icon: Icon(Icons.arrow_forward),
                             color: Colors.white,
-                            onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUp()));
-                            },),
+                            onPressed: (){},),
                           )
                         ],
                       ),
@@ -87,12 +88,14 @@ class _LoginState extends State<Login> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('Don\'t have account ? ',
+                          const Text('Already have an account ? ',
                           style: TextStyle(
                             fontSize: 18.0,
                           ),),
-                          TextButton(onPressed: (){},
-                           child: const Text('Sign Up', 
+                          TextButton(onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> Login()));
+                          },
+                           child: const Text('Login', 
                            style: TextStyle(
                             color:Color.fromARGB(255, 69, 67, 67),
                             fontSize: 25.0,
