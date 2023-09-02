@@ -1,5 +1,7 @@
 import 'package:camera_app/controllers/firebase_auth.dart';
+import 'package:camera_app/main.dart';
 import 'package:camera_app/view/auth/signup.dart';
+import 'package:camera_app/view/home.dart';
 import 'package:camera_app/view/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +36,7 @@ setState(() {
           body: Stack(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 150.0, left: 35.0),
+                margin: EdgeInsets.only(top: 100.0, left: 35.0),
                 child: const Text('Welcome \n Back',
               style: TextStyle(color: Colors.white,
               fontSize: 35.0,
@@ -42,7 +44,7 @@ setState(() {
               ),
               SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.5,
+                  padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.43,
                   right: 40.0, left: 40.0),
                   child: Form(
                     key: _formkey,
@@ -107,7 +109,28 @@ setState(() {
                             color: Color.fromARGB(255, 69, 67, 67),
                           ),),
                           ),
-                        ],),
+                        ],
+                        ),
+                        SizedBox(height: 8.0,),
+                           const  Text('--OR--',
+                            style: TextStyle(fontSize: 23.0),),
+                            SizedBox(height: 10.0,),
+                            ElevatedButton(onPressed: (){
+                              Auth.instance.signInWithGoogle().then((value) => 
+                              Get.off(Home(cameras)));
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.grey.shade800,
+                            ), 
+                            child: Row(
+                              children: [
+                              Image.asset('Asset/google.png',height: 30.0,
+                              width: 30.0,),
+                              const SizedBox(width: 20.0,),
+                              const  Text('Continue with google',
+                              style: TextStyle(fontSize: 19.0),),
+                            ], ),
+                            ),
                         SizedBox(height: 30.0,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,7 +153,7 @@ setState(() {
                             )
                           ],
                         ),
-                        SizedBox(height: 30.0,),
+                        SizedBox(height: 20.0,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -144,7 +167,7 @@ setState(() {
                              child: const Text('Sign Up', 
                              style: TextStyle(
                               color:Color.fromARGB(255, 69, 67, 67),
-                              fontSize: 25.0,
+                              fontSize: 24.0,
                               fontWeight: FontWeight.bold
                               ),
                               ),
